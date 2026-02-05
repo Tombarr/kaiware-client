@@ -1,0 +1,29 @@
+{
+	"id": "kaiware-client",
+	"name": "Kaiware Client",
+	"shortname": "Kaiware",
+	"description": "For interacting with Kaiware",
+	"start_url": "/index.html",
+  	"orientation": "natural",
+	"dir": "auto",
+	"lang": "en-US",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"default_locale": "en-US",
+	"b2g_features": {
+		"display": "Kaiware",
+		"version": "1.0.0",
+		"subtitle": "Kaiware Client",
+		"type": "web",
+		"developer": {
+			"name": "Tom Barrasso",
+			"url": "https://tombarr.github.io"
+		},
+		"cursor": true,
+		"fullscreen": true,
+		"chrome": {
+			"statusbar": "overlap"
+		},
+		"default_locale": "en-US"
+	}
+}

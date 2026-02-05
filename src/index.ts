@@ -1,13 +1,18 @@
 import { Kaiware } from '@nothing-special/kaiware-lib/lib';
 
+function getQueryParam(name: string, defaultValue: string): string {
+	const urlParams = new URLSearchParams(window.location.search);
+	return urlParams.get(name) || defaultValue;
+}
+
 let kaiware: Kaiware | null = null;
 
 async function start() {
 	kaiware = new Kaiware({
-		deviceId: 'my-device',
-		deviceName: 'My Device',
-		address: '192.168.0.1',
-		port: 3000,
+		deviceId: getQueryParam('deviceName', 'My Device').toLowerCase().replace(/ /g, '-'),
+		deviceName: getQueryParam('deviceName', 'My Device'),
+		address: getQueryParam('address', '192.168.0.1'),
+		port: parseInt(getQueryParam('port', '3000')),
 		sourceId: 'my-app',
 		enableConsoleLogHook: true,
 		enableConsoleWarnHook: true,
@@ -19,6 +24,14 @@ async function start() {
 }
 
 start();
+
+document.addEventListener('DOMContentLoaded', () => {
+	const address = getQueryParam('address', '192.168.0.1');
+	const port = getQueryParam('port', '3000');
+	const connectionInfo = document.createElement('p');
+	connectionInfo.textContent = `Connecting to: ${address}:${port}`;
+	document.body.prepend(connectionInfo);
+});
 
 document.querySelector('#send-log-info')?.addEventListener('click', function () {
 	kaiware?.log.info('This is an info message');

@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Kaiware Test Client</title>
+		<title>Kaiware Client</title>
+		<link rel="manifest" href="/manifest.webmanifest" type="application/x-web-app-manifest+json" />
+		<link rel="manifest" href="/manifest.webapp" type="application/manifest+json" />
 		<script src="./first.js"></script>
 		<script src="./index.ts" defer></script>
 		<link rel="stylesheet" href="./styles.css" />
@@ -13,5 +15,6 @@
 		<button id="send-log-warn">Send Warning Log</button>
 		<button id="send-log-error">Send Error Log</button>
 		<button id="add-element">Add HTML Element</button>
+		<div id="error-log"></div>
 	</body>
 </html>

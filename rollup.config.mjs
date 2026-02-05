@@ -9,13 +9,29 @@ export default {
 	input: 'src/index.ts',
 	output: {
 		name: 'KaiwareExample',
-		file: 'build/index.ts',
+		file: 'build/bundle.js',
 		format: 'iife',
 		sourcemap: true
 	},
 	context: 'window',
 	plugins: [
-		copy({ targets: [{ src: 'public/**/*', dest: 'build' }] }),
+		copy({
+			targets: [
+				{
+					src: 'public/index.html',
+					dest: 'build',
+					transform: (contents) =>
+						contents
+							.toString()
+							.replace('<script src="./first.js"></script>', '')
+							.replace('<script src="./index.ts" defer></script>', '<script src="./bundle.js"></script>'),
+				},
+				{
+					src: 'public/**/!(*.html)',
+					dest: 'build',
+				},
+			],
+		}),
 		babel({
 			extensions: ['.js', '.ts', '.mjs', '.cjs', '.html'],
 			babelHelpers: 'runtime',
